@@ -127,9 +127,13 @@ export default function Builder() {
       {/* TOP BAR */}
       <div className="flex justify-between items-center px-6 py-4 bg-white border-b">
         <h2 className="text-xl font-semibold">Resume Builder</h2>
-        <button className="bg-black text-white px-4 py-2 rounded">
+        <button
+          onClick={() => window.print()}
+          className="bg-black text-white px-4 py-2 rounded"
+        >
           Download PDF
         </button>
+
       </div>
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
@@ -326,11 +330,14 @@ export default function Builder() {
         </div>
 
         {/* RIGHT PREVIEW */}
-        {template === "classic" ? (
-          <ResumeClassic data={data} />
-        ) : (
-          <ResumeModern data={data} />
-        )}
+        <div id="resume-preview">
+          {template === "classic" ? (
+            <ResumeClassic data={data} />
+          ) : (
+            <ResumeModern data={data} />
+          )}
+        </div>
+
       </div>
     </div>
   );
