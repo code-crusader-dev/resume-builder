@@ -1,9 +1,30 @@
 import { useState } from "react";
 import ResumeClassic from "../components/ResumeClassic";
 import ResumeModern from "../components/ResumeModern";
+import html2pdf from "html2pdf.js";
 
 export default function Builder() {
   const [template, setTemplate] = useState("classic");
+  const downloadPDF = () => {
+    const element = document.getElementById("resume-preview");
+
+    const options = {
+      margin: 10,
+      filename: `${data.name || "Resume"}.pdf`,
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+      },
+      jsPDF: {
+        unit: "mm",
+        format: "a4",
+        orientation: "portrait",
+      },
+    };
+
+    html2pdf().set(options).from(element).save();
+  };
 
   const [data, setData] = useState({
     name: "",
@@ -128,11 +149,12 @@ export default function Builder() {
       <div className="flex justify-between items-center px-6 py-4 bg-white border-b">
         <h2 className="text-xl font-semibold">Resume Builder</h2>
         <button
-          onClick={() => window.print()}
+          onClick={() => downloadPDF()}
           className="bg-black text-white px-4 py-2 rounded"
         >
           Download PDF
         </button>
+
 
       </div>
 
