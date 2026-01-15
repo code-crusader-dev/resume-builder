@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #resume-preview,
+  #resume-preview * {
+    visibility: visible;
+  }
+
+  #resume-preview {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  @page {
+    size: A4;
+    margin: 20mm;
+  }
+}
